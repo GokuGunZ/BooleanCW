@@ -3,10 +3,25 @@
     --cell-gutter: 20px;
 }
 
+*{
+    margin:auto;
+    padding:0;
+    box-sizing: border-box;
+}
 
 .game-area{
     display:flex;
     align-items:center;
+    margin-top: 18vh;
+    max-width: 80%;
+}
+
+.game-name {
+    text-align:center;
+}
+
+p{
+    text-align: center;
 }
 
 

@@ -19,10 +19,7 @@ for(let i = 0; i < cells.length; i++) {
     
     
     cell.addEventListener('click', function (){
-
-        if (over==1) {
-            return;
-        }
+        
 
         if(cellSigns[i]){
             return;
@@ -39,12 +36,10 @@ for(let i = 0; i < cells.length; i++) {
                 
         let hasWon = checkVictory();   
         if(hasWon) {
-            winnerp.innerText = "Il giocatore " + sign + " ha vinto!";
-            over = 1;
+            showAlert(`${sign} ha vinto`);
             return
-        } else if (turn == 9) {
-            winnerp.innerText = 'La partita è finita in pareggio';
-            over = 1;
+        } else if (turn == 8) {
+            showAlert('pareggio');
             return
         }
 
