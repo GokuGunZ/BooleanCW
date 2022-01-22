@@ -4,8 +4,6 @@ let turn = 0;
 
 const cellSigns = [];
 
-const winnerp = document.getElementById('winner');
-
 
 var over=0;
 
@@ -16,7 +14,7 @@ for(let i = 0; i < cells.length; i++) {
     
     const cell = cells[i];
 
-    
+    var nextButt;
     
     cell.addEventListener('click', function (){
         
@@ -36,10 +34,10 @@ for(let i = 0; i < cells.length; i++) {
                 
         let hasWon = checkVictory();   
         if(hasWon) {
-            showFinish(`${sign} ha vinto`);
-            return
+            showFinish(`${sign} ha vinto`,0);
+            return 'dotti';
         } else if (turn == 8) {
-            showFinish('pareggio');
+            showFinish('pareggio',0);
             return
         }
 
@@ -47,6 +45,23 @@ for(let i = 0; i < cells.length; i++) {
     })
 }
 
+/*
+const nextButt = document.querySelectorAll('.game-new');
+
+for(let i = 0; i < nextButt.length; i++) {
+    const butt= nextButt[i];
+
+    butt.addEventListener('click', function (){
+        console.log('dotti');
+        if(butt.innerHTML==GameLabel[0][0]) {
+            sign = 'X';
+        }
+        const gameAlert = document.querySelector('.game-alert');
+        gameAlert.parentNode.removeChild(gameAlert);
+
+    })
+}
+*/
 
 function checkVictory() {
     const winningCombinations = [
