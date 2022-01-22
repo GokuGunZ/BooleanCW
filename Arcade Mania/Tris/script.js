@@ -36,10 +36,10 @@ for(let i = 0; i < cells.length; i++) {
                 
         let hasWon = checkVictory();   
         if(hasWon) {
-            showAlert(`${sign} ha vinto`);
+            showFinish(`${sign} ha vinto`);
             return
         } else if (turn == 8) {
-            showAlert('pareggio');
+            showFinish('pareggio');
             return
         }
 

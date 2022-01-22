@@ -85,25 +85,53 @@ p{
     margin-bottom: 20px;
 }
 
+/*STRUTTURA BANNER FINE GIOCO */
+
 .game-alert {
     background-color: rgba(59, 45, 59, 0.3);
     position: absolute;
     top: 0;
-    left: 29vw;
-    right: 29vw;
+    width: var(--width);
     bottom: 0;
-    display: flex;
-    
 }
 
 .game-alert-message {
-    position: relative;
-    top: 0%;
+    width: 100%;
+    font-size: 30px;
+    padding: 20px;
+    height: 20%;
+    background-color: rgba(156,0,155,0.85);
+    border-radius: 10px;
+    top: 40%;
+
+    position: absolute;
+    
+    
+    
     display: flex;
     align-items: center;
-    font-size: 38px;
-    padding: 20px;
-    height: 12vh;
-    background-color: rgba(156,0,155,1);
-    border-radius: 5%;
+    justify-content: center;
+}
+
+.game-alert-game {
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    position: relative;
+    font-size: 20px;
+    top:50%;
+    height:10%;
+    width:100%;
+}
+
+.game-new {
+    background-color: rgba(156,0,155,.85);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    width: 48%;
+    text-align: center;
+    border-radius: 10px;
 }
