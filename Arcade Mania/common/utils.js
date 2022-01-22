@@ -1,9 +1,10 @@
 async function showAlert(message){
+    const gameAlertdiv = document.querySelector('.game-alert');
     const gameArea = document.querySelector('.game-alert-message');
+
+    gameAlertdiv.style.opacity = '1';
+    gameAlertdiv.style.zIndex = '20';
   
-
-    
-
     gameArea.innerHTML = gameArea.innerHTML + message;
 
 
@@ -27,24 +28,15 @@ async function showAlert(message){
     return;
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
+async function showNextGame(gioco) { 
 
-function showNextGame(gioco) { 
-
-    const gameArea = document.querySelector('.game-alert');
-
-    const gameMessage = `
-    <div class="game-alert-game">
-        <div class="game-new" style="opacity: 0.01">${GameLabel[gioco][0]}</div>
-        <div class="game-new" style="opacity: 0.01">${GameLabel[gioco][1]}</div>
-    </div>
-    `;
-  
-    gameArea.innerHTML = gameArea.innerHTML + gameMessage;
-
+    const gameButt = document.querySelectorAll('.game-new');
+    
+    gameButt[0].innerHTML=GameLabel[0][0];
+    gameButt[1].innerHTML=GameLabel[0][1];
+    
+    
     const appearNext = setInterval(function() {
         const gameNew = document.querySelectorAll('.game-new');
         var i = parseFloat(gameNew[0].style.opacity);
@@ -52,16 +44,23 @@ function showNextGame(gioco) {
         gameNew[1].style.opacity=`${i+0.01}`;
         if (i==1) {
             clearInterval(appearNext);
-        return;
+            return;
         }
     },1);
+    await sleep(200);
+    gameButt[0].style.cursor = 'pointer';
+    gameButt[1].style.cursor = 'pointer';
 }
 
 const GameLabel = [['Inizia X','Inizia O']]
 
-async function showFinish(message,gioco){
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+async function showFinish(message,gioco){
+    
     showAlert(message);
-    await sleep(1680);
+    await sleep(1180);
     showNextGame(gioco);
 }

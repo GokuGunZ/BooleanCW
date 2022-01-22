@@ -1,4 +1,6 @@
 const cells = document.querySelectorAll('.cell');
+const punti1 = document.querySelector('.punti1');
+const punti2 = document.querySelector('.punti2');
 
 let turn = 0;
 
@@ -6,62 +8,91 @@ const cellSigns = [];
 
 
 var over=0;
+var sign='X';
 
-
+var victoryArray = [0,0];
 
 
 for(let i = 0; i < cells.length; i++) {
     
     const cell = cells[i];
 
-    var nextButt;
     
     cell.addEventListener('click', function (){
         
 
         if(cellSigns[i]){
             return;
-        };
-        var sign
-        if (turn % 2) {
-            sign = 'O';
-        } else {
-            sign = 'X';
         }
         
         cell.innerText = sign;
         cellSigns[i] = sign;
-                
+        
         let hasWon = checkVictory();   
         if(hasWon) {
             showFinish(`${sign} ha vinto`,0);
+            if (sign=='X'){
+                victoryArray[0]++;
+                punti1.innerText = `${victoryArray[0]}`
+            } else {
+                victoryArray[1]++;
+                punti2.innerText = `${victoryArray[1]}`
+            }
             return 'dotti';
         } else if (turn == 8) {
             showFinish('pareggio',0);
             return
         }
-
+        
+        if(sign=='O'){
+            sign = 'X';
+        } else {
+            sign = 'O';
+        }
+        
         turn++;
     })
 }
 
-/*
+
 const nextButt = document.querySelectorAll('.game-new');
 
-for(let i = 0; i < nextButt.length; i++) {
+for(let i = 0; i < 2; i++) {
     const butt= nextButt[i];
 
     butt.addEventListener('click', function (){
-        console.log('dotti');
         if(butt.innerHTML==GameLabel[0][0]) {
             sign = 'X';
+        } else {
+            sign = 'O';
         }
-        const gameAlert = document.querySelector('.game-alert');
-        gameAlert.parentNode.removeChild(gameAlert);
+        console.log(sign);
+
+        const gameAlertdiv = document.querySelector('.game-alert');
+        gameAlertdiv.style.opacity = '0';
+        gameAlertdiv.style.zIndex = '5';   
+
+        for(let i = 0; i < cells.length; i++) {
+            const cell = cells[i];
+            cell.innerText = '';
+        }
+        cellSigns.length = 0;
+        turn=0;
+        const gameArea = document.querySelector('.game-alert-message');
+        gameArea.innerText = '';
+        gameArea.style.top = '40%';
+        const gameNew = document.querySelectorAll('.game-new');
+        nextButt[0].style.opacity='0.01';
+        nextButt[1].style.opacity='0.01';
+        nextButt[0].style.cursor = 'default';
+        nextButt[1].style.cursor = 'default';
+        
+        
+
 
     })
 }
-*/
+
 
 function checkVictory() {
     const winningCombinations = [
